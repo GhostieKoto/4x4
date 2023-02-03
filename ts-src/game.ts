@@ -34,7 +34,7 @@ export class Game {
         /* Build Scene */
         var giantInvisibleWall = new cp.SegmentShape(space.staticBody, v(0, -10000), v(0, 10000), 0);
         giantInvisibleWall.setElasticity(2);
-        space.addShape(giantInvisibleWall);
+//        space.addShape(giantInvisibleWall);
 
         this.terrain = new Terrain(space);
         this.vehicle = new Vehicle(space, config['vehicle'], v(100,100));
@@ -79,6 +79,7 @@ export class Game {
     crashed() {
         if (this.onCrashed) {
             this.onCrashed();
+            confirm();
         }
     };
 
