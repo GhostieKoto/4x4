@@ -40,7 +40,7 @@ export class Terrain {
         }
 
         // flatten out valleys and sharpen peaks
-        height = (Math.pow(height - this.min, 2) / (this.max - this.min)) + this.min;
+        height = (Math.pow(height + this.min, 2) / (this.max - this.min)) + this.min;
 
         // smooth out start of course
         if (x < 600) {
