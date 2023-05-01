@@ -1,22 +1,23 @@
 export var rightPressed: boolean = false;
 export var leftPressed: boolean = false;
+export var score: int = 0;
 
 
 function onKeyDown(e) {
-    if (e.keyCode === 39) {
+    if (e.keyCode === 39 || e.keyCode === 68) {
         rightPressed = true;
         return false;
-    } else if (e.keyCode === 37) {
+    } else if (e.keyCode === 37 || e.keyCode === 65) {
         leftPressed = true;
         return false;
     }
 }
 
 function onKeyUp(e) {
-    if (e.keyCode === 39) {
+    if (e.keyCode === 39 || e.keyCode === 68) {
         rightPressed = false;
         return false;
-    } else if (e.keyCode === 37) {
+    } else if (e.keyCode === 37 || e.keyCode === 65) {
         leftPressed = false;
         return false;
     }
@@ -27,6 +28,7 @@ function leftPedalDown(e) {
     leftPressed = true;
     e.preventDefault();
     return false;
+    score = score - 1;
 }
 
 function leftPedalUp(e) {
@@ -40,6 +42,7 @@ function rightPedalDown(e) {
     rightPressed = true;
     e.preventDefault();
     return false;
+    score = score + 1;
 }
 
 function rightPedalUp(e) {
