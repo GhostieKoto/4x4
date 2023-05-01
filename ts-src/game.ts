@@ -1,6 +1,6 @@
 import * as cp from 'chipmunk-ts';
 let v = cp.v;
-
+let score = 0;
 import { Terrain } from './terrain';
 import { Vehicle } from './vehicle';
 import { Dust } from './dust';
@@ -33,7 +33,7 @@ export class Game {
 
         /* Build Scene */
         var giantInvisibleWall = new cp.SegmentShape(space.staticBody, v(0, -10000), v(0, 10000), 0);
-        giantInvisibleWall.setElasticity(2);
+         giantInvisibleWall.setElasticity(2);
 //        space.addShape(giantInvisibleWall);
 
         this.terrain = new Terrain(space);
@@ -49,14 +49,17 @@ export class Game {
         /* Handle Input */
         if (input.rightPressed && !input.leftPressed) {
             this.vehicle.setThrottle(1);
+             score = score + 1;
         } else if (input.leftPressed && !input.rightPressed) {
             this.vehicle.setThrottle(-1);
+              score = score - 1;
         } else {
             this.vehicle.setThrottle(0);
         }
 
         if (this.vehicle.isCrashed()) {
             this.crashed();
+                score = 0;
         }
 
         this.terrain.updateBounds(this.vehicle.p.x - 100, this.vehicle.p.x + 100);
